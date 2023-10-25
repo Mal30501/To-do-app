@@ -1,15 +1,17 @@
+import React from 'react';
 import LogOut from './LogOut';
 import Login from './Login';
 import Register from './Register';
-export default function UserBar({User, setUser}){
-    if(User){
-        return <LogOut User={User} setUser={setUser}/>
-    } else{
-        return(
-          <>
-          <Login setUser={setUser} />
-          <Register setUser={setUser} />
-          </>
-        )
-    }
+
+export default function UserBar({ user, dispatchUser }) {
+  if (user) {
+        return <LogOut user={user} dispatchUser={dispatchUser} />;
+  } else {
+    return (
+      <>
+        <Login dispatchUser={dispatchUser} />
+        <Register dispatchUser={dispatchUser} />
+      </>
+    );
+  }
 }

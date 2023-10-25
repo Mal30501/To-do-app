@@ -1,8 +1,12 @@
-export default function LogOut({User,setUser}){
-    return(
-        <form onSubmit={event=>{event.preventDefault(); setUser(``)}}>
-                User Email : <b>{User}</b>
-                <input type ="submit" value ="Log out"/>
-        </form>
-    )
+import React from 'react';
+
+function LogOut({ user, dispatchUser }) {
+  return (
+    <form onSubmit={() => dispatchUser({ type: 'LOGOUT' })}>
+      User Email: <b>{user.email}</b>
+      <input type="submit" value="Log out" />
+    </form>
+  );
 }
+
+export default LogOut;
