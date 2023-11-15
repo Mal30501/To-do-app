@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useResource } from 'react-request-hook';
 
 function Register({ dispatchUser }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [user , register ] = useResource(() => ({
+    url: '/users',
+    method: 'post',
+    data: { username:name, email:email, password:password }
+    }));
+    useEffect(() => {
+      if (user && user.data) {
+        dispatchUser({ type: 'REGISTER', email });
+      }
+      }, [user]);
   function handleRegister(event) {
-    event.preventDefault();
-    // Perform registration logic
-    dispatchUser({ type: 'REGISTER', email });
+    register(name, email, password);
   }
 
   return (

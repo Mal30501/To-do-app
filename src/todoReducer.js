@@ -5,7 +5,7 @@ const todoReducer = (state, action) => {
       case 'TOGGLE_TODO':
         return state.map((todo) =>
           todo === action.clickedTodo
-            ? { ...todo, complete: !todo.complete, dateCompleted: todo.complete ? null : Date.now() }
+            ? { ...todo, complete: !todo?.complete, dateCompleted: todo?.complete ? null : Date.now() }
             : todo
         );
       case 'DELETE_TODO':

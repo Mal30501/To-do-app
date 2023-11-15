@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RequestProvider } from 'react-request-hook';
+import axios from 'axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const axiosObj = axios.create({
+  baseURL: 'http://localhost:4000',
+  timeout: 15000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 root.render(
   <React.StrictMode>
-    <App />
+    <RequestProvider value={axiosObj}>
+      <App />
+    </RequestProvider>
   </React.StrictMode>
 );
 
